@@ -55,6 +55,7 @@ class Player {
     update(dt) {
 
         if (!this.gameOver) {
+            //get the various keys
             switch (this.key) {
                 case 'up':
                     if (this.y >= 100) {
@@ -76,8 +77,10 @@ class Player {
                         this.x += 100;
                     }
             }
+            //so that after the player moves they dont continue moving
             this.key = null;
-            
+
+            //if the player reaches the water end game
             if (this.y === 0) {
                 this.gameOver = true;
             }
