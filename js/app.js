@@ -58,13 +58,13 @@ class Player {
             //get the various keys
             switch (this.key) {
                 case 'up':
-                    if (this.y >= 100) {
-                        this.y -= 100;
+                    if (this.y > 50) {
+                        this.y -= 83;
                     }
                     break;
                 case 'down':
                     if (this.y < 400) {
-                        this.y += 100;
+                        this.y += 83;
                     }
                     break;
                 case 'left':
@@ -81,8 +81,10 @@ class Player {
             this.key = null;
 
             //if the player reaches the water end game
-            if (this.y === 0) {
+            if (this.y <= 0) {
+
                 this.gameOver = true;
+                this.reset();
             }
         }
     }
@@ -93,6 +95,12 @@ class Player {
 
     handleInput(key) {
         this.key = key;
+    }
+
+    reset() {
+        this.x = 200;
+        this.y = 400;
+        this.gameOver = false;
     }
 }
 
