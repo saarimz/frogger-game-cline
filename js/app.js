@@ -81,7 +81,6 @@ class Player {
     }
 
     handleInput(key) {
-
         this.key = key;
     }
 }
@@ -90,7 +89,7 @@ class Player {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 let allEnemies = [];
-allEnemies.push(new Enemy());
+allEnemies.push(new Enemy(), new Enemy());
 
 let player = new Player();
 
