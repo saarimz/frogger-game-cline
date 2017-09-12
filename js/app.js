@@ -7,8 +7,12 @@ class Enemy {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
         this.sprite = 'images/enemy-bug.png'
+        //so that the enemy stars just outside the board
         this.x = -100; 
+        //so that the enemies only appear in the path
         this.y = Math.floor(Math.random() * 200) + 51;
+        //so that we can adjust the speed from 101 - 200
+        this.speed = Math.floor(Math.random() * 100) + 101
     }
     // Update the enemy's position, required method for game
     // Parameter: dt, a time delta between ticks
@@ -17,13 +21,16 @@ class Enemy {
     // which will ensure the game runs at the same speed for
     // all computers.this.x
     
+    /*
         this.timeout = setTimeout(() => {
-                this.x++ * dt;
+                this.x += 1 * dt;
         },1);
 
         if (this.x > 505) {
             clearTimeout(this.timeout);
-        }
+        }*/
+
+        this.x += this.speed * dt;
         
     }
 
@@ -70,6 +77,7 @@ class Player {
                     }
             }
             this.key = null;
+            
             if (this.y === 0) {
                 this.gameOver = true;
             }
