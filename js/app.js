@@ -3,12 +3,8 @@ let allEnemies = [];
 
 class Enemy {
     constructor() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-        this.sprite = 'images/enemy-bug.png'
+   
+        this.sprite = 'images/enemy-bug.png';
         //so that the enemy stars just outside the board
         this.x = (Math.floor(Math.random() * 2000) + 1) * -1;
         //so that the enemies only appear in the path
@@ -16,12 +12,8 @@ class Enemy {
         //so that we can adjust the speed from 101 - 200
         this.speed = Math.floor(Math.random() * 100) + 101
     }
-    // Update the enemy's position, required method for game
-    // Parameter: dt, a time delta between ticks
+
     update(dt) {
-         // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.this.x
 
         //movement along x axis
         this.x += this.speed * dt;
@@ -36,14 +28,12 @@ class Enemy {
     }
 
     drawRectangle() {
-        let rectangleX1 = this.x - 55;
-        let rectangleX2 = this.x + 55;
-        let rectangleY1 = this.y - 30;
-        let rectangleY2 = this.y + 30;
-        return [rectangleX1, rectangleX2, rectangleY1, rectangleY2];
+        //create a rectangle for collision detection
+        return [this.x - 55, this.x + 55, this.y - 30, this.y + 30];
     }
 
     collisionCheck() {
+        //actual collision detection
         let enemyRectangle = this.drawRectangle();
         let playerPos = player.getPos();
 
@@ -56,9 +46,15 @@ class Enemy {
     }
 }
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+class Superbug extends Enemy {
+
+    constructor() {
+        super();
+        this.sprite = 'images/enemy-superbug.png';
+        this.speed = 400;
+    }
+
+}
 
 class Player {
     constructor(sprite = 'images/char-boy.png') {
@@ -129,8 +125,7 @@ class Player {
 
 }
 
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
@@ -154,6 +149,8 @@ $(document).ready(function(){
           for (var i = 0; i < 10; i++) {
             allEnemies.push(new Enemy());
           }
+          //send subclass
+          allEnemies.push(new Superbug(), new Superbug(), new Superbug());
         }
       },
       resizable: false,
