@@ -1,6 +1,16 @@
-frontend-nanodegree-arcade-game
+Frogger Clone
 ===============================
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Introduction
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+This is a clone I made of the classic arcade game Frogger using OOP in JavaScript for the Udacity Front End Developer Nanodegree course. The main objective of this game is to make it to the river passing your enemies that are charging at you. Once you reach the river the game resets and you can play again.
+
+## How can I play the game
+
+You can play the game by clicking [here](http://www.saarimzaman.com/frogger-game-clone/). The dependencies are JQuery, ES6, and JQuery UI, but the JQuery dependencies are delivered via CDNs so no need to worry. ES6 syntax should work on Google Chrome.
+
+## Known issues and To Do's
+
+1. I haven't implemented a score system yet.
+2. The collision detection for the Enemy class isn't perfect by any means.
+3. I haven't added any extra things that happen when the player wins, other than the game restarting.
