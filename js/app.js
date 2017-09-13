@@ -10,7 +10,7 @@ class Enemy {
     // a helper we've provided to easily load images
         this.sprite = 'images/enemy-bug.png'
         //so that the enemy stars just outside the board
-        this.x = (Math.floor(Math.random() * 1000) + 1) * -1;
+        this.x = (Math.floor(Math.random() * 2000) + 1) * -1;
         //so that the enemies only appear in the path
         this.y = Math.floor(Math.random() * 200) + 51;
         //so that we can adjust the speed from 101 - 200
@@ -22,24 +22,37 @@ class Enemy {
          // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.this.x
-    
-    /*
-        this.timeout = setTimeout(() => {
-                this.x += 1 * dt;
-        },1);
 
-        if (this.x > 505) {
-            clearTimeout(this.timeout);
-        }*/
-        
+        //movement along x axis
+        this.x += this.speed * dt;
 
-            this.x += this.speed * dt;
-        
+        //collision with player
+        this.collisionCheck();
     }
 
     render() {
         // Draw the enemy on the screen, required method for game
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+
+    drawRectangle() {
+        let rectangleX1 = this.x - 55;
+        let rectangleX2 = this.x + 55;
+        let rectangleY1 = this.y - 30;
+        let rectangleY2 = this.y + 30;
+        return [rectangleX1, rectangleX2, rectangleY1, rectangleY2];
+    }
+
+    collisionCheck() {
+        let enemyRectangle = this.drawRectangle();
+        let playerPos = player.getPos();
+
+        if (
+            ((playerPos[0] >= enemyRectangle[0]) && (playerPos[0] <= enemyRectangle[1])) &&
+            ((playerPos[1] >= enemyRectangle[2]) && (playerPos[1] <= enemyRectangle[3]))
+            ) {
+            player.reset();
+        }
     }
 }
 
@@ -109,6 +122,11 @@ class Player {
     setSprite(sprite) {
         this.sprite = sprite;
     }
+
+    getPos() {
+        return [this.x, this.y];
+    }
+
 }
 
 // This listens for key presses and sends the keys to your
@@ -131,8 +149,11 @@ $(document).ready(function(){
       buttons: {
         OK: function() {
         //send enemies only after OK is pressed
-          allEnemies.push(new Enemy(), new Enemy());
           $(this).dialog( "close" );
+          //default - send 10 enemies
+          for (var i = 0; i < 10; i++) {
+            allEnemies.push(new Enemy());
+          }
         }
       },
       resizable: false,
