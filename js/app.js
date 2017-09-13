@@ -1,14 +1,14 @@
 let player;
 let allEnemies = [];
 
-function generateEnemies(n) {
+function sendEnemies(n) {
+    allEnemies = [];
     for (var i = 0; i < n; i++) {
             allEnemies.push(new Enemy());
-          }
-          //send subclass
-          allEnemies.push(new Superbug(), new Superbug(), new Superbug());
+        }
+    //send subclass
+    allEnemies.push(new Superbug(), new Superbug(), new Superbug());
     }
-}
 
 class Enemy {
     constructor() {
