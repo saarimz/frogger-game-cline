@@ -1,3 +1,5 @@
+let player;
+let allEnemies = [];
 
 class Enemy {
     constructor() {
@@ -46,8 +48,8 @@ class Enemy {
 // a handleInput() method.
 
 class Player {
-    constructor() {
-        this.sprite = 'images/char-boy.png'
+    constructor(sprite = 'images/char-boy.png') {
+        this.sprite = sprite;
         this.x = 200;
         this.y = 400;
         this.gameOver = false;
@@ -105,14 +107,6 @@ class Player {
     }
 }
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-let allEnemies = [];
-allEnemies.push(new Enemy(), new Enemy());
-
-let player = new Player();
-
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
@@ -124,4 +118,32 @@ document.addEventListener('keyup', function(e) {
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
+});
+
+$(document).ready(function(){
+
+    $( "#dialog-message" ).dialog({
+      modal: true,
+      buttons: {
+        OK: function() {
+        //send enemies only after OK is pressed
+          allEnemies.push(new Enemy(), new Enemy());
+          $(this).dialog( "close" );
+        }
+      },
+      resizable: false,
+      width: 600,
+      height: 350,
+      open: function() {
+        let selected = false;
+        $(".character img").click(function(){
+            let char = $(this).attr("src");
+            //($(this).css("background-color").toLowerCase() == 'rgb(255, 149, 139)') ? $(this).css({'background-color':'rgba(0, 0, 0, 0)'}) : $(this).css({'background-color':'rgb(255, 149, 139)'});
+            console.log(char);
+            player.sprite = char;
+        });
+      }
+    });
+
+    player = new Player();
 });
