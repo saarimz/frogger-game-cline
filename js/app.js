@@ -1,6 +1,15 @@
 let player;
 let allEnemies = [];
 
+function generateEnemies(n) {
+    for (var i = 0; i < n; i++) {
+            allEnemies.push(new Enemy());
+          }
+          //send subclass
+          allEnemies.push(new Superbug(), new Superbug(), new Superbug());
+    }
+}
+
 class Enemy {
     constructor() {
    
@@ -113,6 +122,7 @@ class Player {
         this.x = 200;
         this.y = 400;
         this.gameOver = false;
+        sendEnemies(10);
     }
 
     setSprite(sprite) {
@@ -146,11 +156,7 @@ $(document).ready(function(){
         //send enemies only after OK is pressed
           $(this).dialog( "close" );
           //default - send 10 enemies
-          for (var i = 0; i < 10; i++) {
-            allEnemies.push(new Enemy());
-          }
-          //send subclass
-          allEnemies.push(new Superbug(), new Superbug(), new Superbug());
+          sendEnemies(10);
         }
       },
       resizable: false,
