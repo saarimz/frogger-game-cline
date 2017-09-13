@@ -142,9 +142,9 @@ $(document).ready(function(){
         let selected = false;
         $(".character img").click(function(){
             let char = $(this).attr("src");
-            //($(this).css("background-color").toLowerCase() == 'rgb(255, 149, 139)') ? $(this).css({'background-color':'rgba(0, 0, 0, 0)'}) : $(this).css({'background-color':'rgb(255, 149, 139)'});
-            console.log(char);
+            let charName = $(this).attr("alt");
             player.setSprite(char);
+            $("#select-message").text(`You have selected ${charName}!`);
         });
       }
     });

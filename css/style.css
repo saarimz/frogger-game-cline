@@ -16,3 +16,9 @@ img {
 	height: 171px;
 	width: 101px;
 } 	
+
+#select-message {
+	font-family: sans-serif;
+	font-size: 16px;
+	color: #000080
+}
