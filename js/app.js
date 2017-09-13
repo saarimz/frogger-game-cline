@@ -105,6 +105,10 @@ class Player {
         this.y = 400;
         this.gameOver = false;
     }
+
+    setSprite(sprite) {
+        this.sprite = sprite;
+    }
 }
 
 // This listens for key presses and sends the keys to your
@@ -140,7 +144,7 @@ $(document).ready(function(){
             let char = $(this).attr("src");
             //($(this).css("background-color").toLowerCase() == 'rgb(255, 149, 139)') ? $(this).css({'background-color':'rgba(0, 0, 0, 0)'}) : $(this).css({'background-color':'rgb(255, 149, 139)'});
             console.log(char);
-            player.sprite = char;
+            player.setSprite(char);
         });
       }
     });
