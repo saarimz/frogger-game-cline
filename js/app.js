@@ -8,7 +8,7 @@ class Enemy {
     // a helper we've provided to easily load images
         this.sprite = 'images/enemy-bug.png'
         //so that the enemy stars just outside the board
-        this.x = -100; 
+        this.x = (Math.floor(Math.random() * 1000) + 1) * -1;
         //so that the enemies only appear in the path
         this.y = Math.floor(Math.random() * 200) + 51;
         //so that we can adjust the speed from 101 - 200
@@ -29,8 +29,9 @@ class Enemy {
         if (this.x > 505) {
             clearTimeout(this.timeout);
         }*/
+        
 
-        this.x += this.speed * dt;
+            this.x += this.speed * dt;
         
     }
 
